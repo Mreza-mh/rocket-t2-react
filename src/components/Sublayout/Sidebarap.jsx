@@ -12,7 +12,7 @@ function Sidebarap() {
     <div className="fixed inset-y-0 left-0 w-16 flex items-center justify-center z-50">
         <aside className=" z-20 flex-shrink-0 flex-grow-0 justify-around gap-4 border-t border-gray-200 bg-white p-2.5 shadow-lg backdrop-blur-lg dark:border-slate-600/60 dark:bg-slate-800/50 fixed top-2/4 -translate-y-2/4 left-6 min-h-[auto] min-w-[64px] flex-col rounded-lg border transition-all duration-300 ease-in-out">
             <Link
-                    to="/"
+                    to=""
                     className={`flex aspect-square min-h-[32px] w-16 flex-col items-center justify-center gap-1 rounded-md p-1.5 ${
                     isActive("/analytics")
                         ? "text-gray-400 text-bold"
@@ -37,12 +37,12 @@ function Sidebarap() {
             </Link>
             <hr className="dark:border-gray-700/60" />
             <Link
-                    to="/"
+                    to="/welcome"
                     className={`flex h-16 w-16 flex-col items-center justify-center gap-1 ${
-                    isActive("/") ? "text-fuchsia-800 text-bold" : "text-gray-400"
+                    isActive("/welcome") ? "text-fuchsia-800 text-bold" : "text-gray-400"
                     } dark:text-gray-400`}
                 >
-                    {isActive("/") && (
+                    {isActive("/welcome") && (
                     <span className=" mr-14 h-1 w-1">
                         <span className="relative animate-ping inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
                     </span>
