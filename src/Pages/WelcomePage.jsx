@@ -4,7 +4,7 @@ import Chart from "chart.js/auto";
 
 const WelcomePage = () => {
   const [data, setData] = useState([]);
-  const [visibleChart, setVisibleChart] = useState(null);
+  const [visibleChart, setVisibleChart] = useState("lineChart");
 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("userData"))?.token;
@@ -40,26 +40,6 @@ const WelcomePage = () => {
     });
   };
 
-    const createPieChart = (data) => {
-      const ctx = document.getElementById("pieChart");
-
-      new Chart(ctx, {
-        type: "pie",
-        data: {
-          labels: data.map((item) => item.date),
-          datasets: [
-            {
-              label: "Amount",
-              data: data.map((item) => item.amount),
-
-
-              borderWidth: 1,
-            },
-          ],
-        },
-
-      });
-  };
   
  const createChart = (id, type, title, data, labels) => {
    const ctx = document.getElementById(id);
@@ -133,20 +113,27 @@ const WelcomePage = () => {
 
 
   return (
-    <div className="container mx-auto">
-      <ul className="flex justify-center mt-4">
-        {["lineChart", "barChart", "pieChart", "radarChart"].map(
-          (chartName) => (
-            <li key={chartName} className="mr-4">
-              <button onClick={() => handleChartClick(chartName)}>
-                Show {chartName.replace("Chart", "")} Chart
-              </button>
-            </li>
-          )
-        )}
-      </ul>
-      <div className="">
-        <div className="flex items-center justify-center bg-slate-200 p-20 ml-14">
+    <>
+      <div className="container mx-auto">
+        <ul className="flex justify-center bg-gray-200 p-4">
+          {["lineChart", "barChart", "pieChart", "radarChart"].map(
+            (chartName) => (
+              <li key={chartName} className="mr-4">
+                <button
+                  onClick={() => handleChartClick(chartName)}
+                  className={`px-4 py-2 rounded-md ${
+                    visibleChart === chartName
+                      ? "bg-blue-500 text-white"
+                      : "bg-white border border-gray-400 text-gray-700 hover:bg-gray-100"
+                  }`}
+                >
+                  Show {chartName.replace("Chart", "")} Chart
+                </button>
+              </li>
+            )
+          )}
+        </ul>
+        <div className="flex items-center justify-center bg-gray-100 p-20">
           {["lineChart", "barChart", "pieChart", "radarChart"].map(
             (chartName) => (
               <canvas
@@ -155,13 +142,12 @@ const WelcomePage = () => {
                 style={{
                   display: visibleChart === chartName ? "block" : "none",
                 }}
-
               ></canvas>
             )
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
