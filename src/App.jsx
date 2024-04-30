@@ -8,7 +8,6 @@ import SideBar from "./components/Sublayout/SideBar.jsx";
 import FormComponent from "./Pages/FormPage/Form.jsx";
 
 function App() {
-  
   const isAuthenticated = () => {
     const userData = JSON.parse(localStorage.getItem("userData"));
     return userData && new Date().getTime() < userData.expirationTime;
@@ -17,22 +16,16 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        {isAuthenticated() ? (
-          <SideBar />
-        ) : (
-          <>
-            <h2> log in </h2>
-          </>
-        )}
+        <SideBar />
         <Routes>
           <Route path="/" element={<FormComponent />} />
           <Route
             path="/post"
-            element={isAuthenticated() ? <ManagePage /> : <FormComponent />}
+            element={isAuthenticated() ? <ManagePage /> : <Navigate to="/" />}
           />
           <Route
             path="/welcome"
-            element={isAuthenticated() ? <Welcome /> : <FormComponent />}
+            element={isAuthenticated() ? <Welcome /> : <Navigate to="/" />}
           />
         </Routes>
         <Footer />

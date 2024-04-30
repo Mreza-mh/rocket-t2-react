@@ -1,17 +1,23 @@
-import React from 'react'
-import { Route } from 'react-router-dom'
+// import React from "react";
+// import { Route, Navigate, useLocation } from "react-router-dom";
 
-function PrRoutes({component : Component , ...rest}) {
-    return (
-    <div>
-            <Route {...rest}
-                render={
-                    (props) => {(
-                        <Component {...props} />
-                    )}
-            }    />
-    </div>
-    )
-}
+// export default function PrRoutes({ component: Component, ...rest }) {
+//   const isAuthenticated = () => {
+//     const userData = JSON.parse(localStorage.getItem("userData"));
+//     return userData && new Date().getTime() < userData.expirationTime;
+//   };
 
-export default PrRoutes
+//   const location = useLocation();
+
+//   return (
+//     <div>
+//       <Route {...rest}>
+//         {isAuthenticated() ? (
+//           <Component />
+//         ) : (
+//           <Navigate to="/login" state={{ from: location }} />
+//         )}
+//       </Route>
+//     </div>
+//   );
+// }
