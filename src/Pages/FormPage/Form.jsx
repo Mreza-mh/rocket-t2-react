@@ -1,7 +1,10 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import * as Yup from "yup";
+import { notifyError } from "../../packages/Notify";
+import { useDispatch } from "react-redux";  // =================================================================
+import { setUserdata } from "../../Store/Slices/AuthUser";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
@@ -10,35 +13,37 @@ const validationSchema = Yup.object().shape({
 
 function storeToken(name, token) {
   const currentTime = new Date().getTime();
-  const expirationTime = currentTime + 20 * 1000; // 5 minutes
+  const expirationTime = currentTime + 20 * 1000;
   const userData = { name, token, loginTime: currentTime, expirationTime };
   localStorage.setItem("userData", JSON.stringify(userData));
 }
 
-function handleSubmit(values, { setSubmitting }) {
-  axios
-    .post("https://react-camp-api.roocket.ir/api/admin/login", values)
-    .then((response) => {
-      console.log("Response data:", response.data);
-
-      if (response.status === 200) {
-        const { name, token } = response.data;
-        storeToken(name, token);
-
-        axios.defaults.headers.common["Authorization"] = "Bearer " + token;
-
-        window.location.href = "/post";
-      }
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    })
-    .finally(() => {
-      setSubmitting(false);
-    });
-}
-
 function FormComponent() {
+  const dispatch = useDispatch(); // =================================================================
+
+  function handleSubmit(values, { setSubmitting }) {
+    axios
+      .post("https://react-camp-api.roocket.ir/api/admin/login", values)
+      .then((response) => {
+        console.log("Response data:", response.data);
+
+        if (response.status === 200) {
+          const { name, token } = response.data;
+          storeToken(name, token);
+          dispatch(setUserdata(token)); // =================================================================
+          console.log(token);
+          window.location.href = "/post";
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        notifyError("Incorrect information");
+      })
+      .finally(() => {
+        setSubmitting(false);
+      });
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full ">
@@ -57,7 +62,7 @@ function FormComponent() {
         >
           {({ isSubmitting }) => (
             <div className="flex flex-col items-center justify-center min-h-screen">
-              <div className="w-full max-w-md bg-white rounded-lg shadow-lg">
+              <div className="w-full max-w-md bg-[#979ba1dc] rounded-lg shadow-lg">
                 <div className="px-10 py-8">
                   <h2 className="text-3xl font-semibold text-center text-gray-800 mb-6">
                     Login

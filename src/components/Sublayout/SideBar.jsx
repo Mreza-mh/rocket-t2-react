@@ -19,6 +19,7 @@ const transitionStyles = {
 };
 
 function SideBar() {
+  
   const nodeRef = useRef(null);
   const dispatch = useDispatch();
   const [sidebarOpen, setSidebarOpen] = useState(false);

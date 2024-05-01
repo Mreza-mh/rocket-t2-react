@@ -5,13 +5,15 @@ import './index.css'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {store} from './Store'
+import Particle from './packages/Particle.jsx';
 import { Provider } from 'react-redux';
-import store from './Store';
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <>
     <Provider store={store}>
-      <div className="bg-[#1a3044]">
+      <div>
+        <Particle />
         <App />
         <ToastContainer />
       </div>

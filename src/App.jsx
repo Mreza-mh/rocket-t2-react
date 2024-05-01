@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import "./App.css";
 import Footer from "./components/Sublayout/Footer.jsx";
 import Welcome from "./Pages/WelcomePage.jsx";
 import ManagePage from "./Pages/ManagePage/ManagePage.jsx";
