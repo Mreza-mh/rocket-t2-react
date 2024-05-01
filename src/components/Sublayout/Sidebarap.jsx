@@ -15,7 +15,6 @@ function Sidebarap({ setSidebarOpen, handleLogout }) {
   return (
     <div className="fixed inset-y-0 left-0 w-16 flex items-center justify-center z-50">
       <aside className="flex flex-col gap-4 border-t border-gray-200 bg-white p-2.5 shadow-lg backdrop-blur-lg dark:border-slate-600/60 dark:bg-slate-800/50 fixed top-1/2 -translate-y-1/2 left-6 min-h-[auto] min-w-[64px] rounded-lg border transition-all duration-300 ease-in-out">
-        {/* Welcome Link */}
         <Link
           to="/welcome"
           className={`flex aspect-square min-h-[32px] w-16 flex-col items-center justify-center gap-1 rounded-md p-1.5 ${

@@ -3,8 +3,6 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import * as Yup from "yup";
 import { notifyError } from "../../packages/Notify";
-import { useDispatch } from "react-redux";  // =================================================================
-import { setUserdata } from "../../Store/Slices/AuthUser";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
@@ -19,18 +17,16 @@ function storeToken(name, token) {
 }
 
 function FormComponent() {
-  const dispatch = useDispatch(); // =================================================================
 
   function handleSubmit(values, { setSubmitting }) {
     axios
       .post("https://react-camp-api.roocket.ir/api/admin/login", values)
       .then((response) => {
-        console.log("Response data:", response.data);
+        console.log(localStorage.getItem("userData") + "sssssssssssss");
 
         if (response.status === 200) {
           const { name, token } = response.data;
           storeToken(name, token);
-          dispatch(setUserdata(token)); // =================================================================
           console.log(token);
           window.location.href = "/post";
         }

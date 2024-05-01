@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleSidebar } from "../../Store/Slices/SidebarSlice";
+import { toggleSidebar } from "../../Rishe/Store/Slices/SidebarSlice";
 import Sidebarap from "./Sidebarap";
 import { Transition } from "react-transition-group";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../Rishe/context/UserContext";
 
 const duration = 400;
 
@@ -25,33 +26,48 @@ function SideBar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const sidebar = useSelector((state) => state.sidebar.sidestate);
 
-    useEffect(() => {
-      const isAuthenticated = () => {
-        const userData = JSON.parse(localStorage.getItem("userData"));
-        return (
-          userData?.expirationTime &&
-          new Date().getTime() < userData.expirationTime
-        );
-      };
 
-      setSidebarOpen(isAuthenticated());
-    }, []);
   
+useEffect(() => {
+  const isAuthenticated = () => {
+    return user.getToken() !== null;
+  };
+
+  setSidebarOpen(isAuthenticated());
+}, []);
     const navigate = useNavigate();
 
       const handleLogout = () => {
         localStorage.removeItem("userData");
         console.log(localStorage.getItem("userData"));
+
         navigate("/");
       };
+      
+      const user = useContext(UserContext);
+      const username = user.getName();
+
 
   return (
     <>
       {sidebarOpen && (
         <nav className=" bg-gradient-to-r h-20 from-[#a02a499b] via-[#a02a4938] to-[#1a304446] p-2 flex items-center w-full justify-between  z-50 ">
-          <h1 className=" ml-40 text-center text-white text-bold ">
-            MANAGE PAGE
-          </h1>
+          <div className="flex ">
+            <svg
+              className="ml-40 w-8 h-8 text-white mr-2"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zm3.953 14.845c-.313-.77-.768-1.402-1.359-1.9-1.58-.77-3.517-.77-5.098 0-.591.275-1.046 1.044-1.36 1.901C3.238 14.45 2 12.608 2 10c0-2.21 1.79-4 4-4h8c2.21 0 4 1.79 4 4 0 2.609-1.238 4.45-2.047 4.845z"
+                clipRule="evenodd"
+              />
+            </svg>
+            <h1 className=" ml-4 border-b-2 border-[#a02a499b] text-center text-white text-md text-bold ">
+              {username}
+            </h1>
+          </div>
         </nav>
       )}
       {sidebarOpen && (

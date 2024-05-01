@@ -1,16 +1,21 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+import React, { useEffect } from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import "./index.css";
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import {store} from './Store'
-import Particle from './packages/Particle.jsx';
-import { Provider } from 'react-redux';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { store } from "./Rishe/Store";
+import Particle from "./packages/Particle.jsx";
+import { Provider } from "react-redux";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <>
+const Root = () => {
+  useEffect(() => {
+    localStorage.removeItem("userData");
+    
+  }, []);
+
+  return (
     <Provider store={store}>
       <div>
         <Particle />
@@ -18,5 +23,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <ToastContainer />
       </div>
     </Provider>
-  </>
-);
+  );
+};
+
+ReactDOM.createRoot(document.getElementById("root")).render(<Root />);

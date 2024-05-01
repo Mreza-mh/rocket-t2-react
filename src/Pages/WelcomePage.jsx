@@ -1,15 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Chart from "chart.js/auto";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
+import { UserContext } from "../Rishe/context/UserContext";
 
 const WelcomePage = () => {
   const [data, setData] = useState([]);
   const [visibleChart, setVisibleChart] = useState("lineChart");
 
-  const token = useSelector((state) => state.auth.token);
-    console.log(token + "?????????");
+  // const token = useSelector((state) => state.auth.token); // =================================================================
+  // console.log(token + "?????????");
 
+  const user = useContext(UserContext)
+  const token = user.getToken();
+  
   useEffect(() => {
     if (token) {
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;

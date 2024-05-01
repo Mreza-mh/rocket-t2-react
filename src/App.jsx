@@ -5,30 +5,55 @@ import Welcome from "./Pages/WelcomePage.jsx";
 import ManagePage from "./Pages/ManagePage/ManagePage.jsx";
 import SideBar from "./components/Sublayout/SideBar.jsx";
 import FormComponent from "./Pages/FormPage/Form.jsx";
+import { UserContext } from "./Rishe/context/UserContext.jsx";
 
 function App() {
-  const isAuthenticated = () => {
-    const userData = JSON.parse(localStorage.getItem("userData"));
-    return userData && new Date().getTime() < userData.expirationTime;
+
+const getUserData = () => {
+  const userData = JSON.parse(localStorage.getItem("userData"));
+
+  let userDataMethods = {
+    getName: () => null,
+    getToken: () => null,
+    getLoginTime: () => null,
+    getExpirationTime: () => null,
   };
+
+  if (userData) {
+    userDataMethods = {
+      getName: () => userData.name,
+      getToken: () => userData.token,
+      getLoginTime: () => userData.loginTime,
+      getExpirationTime: () => userData.expirationTime,
+    };
+  }
+
+  return userDataMethods;
+};
+
+
+    const user = getUserData();
+    console.log(user.getToken() + " 555555555555555 "); 
 
   return (
     <>
-      <BrowserRouter>
-        <SideBar />
-        <Routes>
-          <Route path="/" element={<FormComponent />} />
-          <Route
-            path="/post"
-            element={isAuthenticated() ? <ManagePage /> : <Navigate to="/" />}
-          />
-          <Route
-            path="/welcome"
-            element={isAuthenticated() ? <Welcome /> : <Navigate to="/" />}
-          />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+      <UserContext.Provider value={user}>
+        <BrowserRouter>
+          <SideBar />
+          <Routes>
+            <Route path="/" element={<FormComponent />} />
+            <Route
+              path="/post"
+              element={user.getToken() ? <ManagePage /> : <Navigate to="/" />}
+            />
+            <Route
+              path="/welcome"
+              element={user.getToken() ? <Welcome /> : <Navigate to="/" />}
+            />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </UserContext.Provider>
     </>
   );
 }
