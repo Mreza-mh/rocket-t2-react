@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Footer from "./components/Sublayout/Footer.jsx";
-import Welcome from "./Pages/WelcomePage.jsx";
+import Dashboard from "./Pages/Dashboard/Dashboard.jsx";
 import ManagePage from "./Pages/ManagePage/ManagePage.jsx";
 import SideBar from "./components/Sublayout/SideBar.jsx";
 import FormComponent from "./Pages/FormPage/Form.jsx";
-import { UserContext } from "./Rishe/context/UserContext.jsx";
+import { UserContext } from "./context_store/context/UserContext.jsx";
 
 function App() {
 
@@ -48,7 +48,7 @@ const getUserData = () => {
             />
             <Route
               path="/welcome"
-              element={user.getToken() ? <Welcome /> : <Navigate to="/" />}
+              element={user.getToken() ? <Dashboard /> : <Navigate to="/" />}
             />
           </Routes>
           <Footer />

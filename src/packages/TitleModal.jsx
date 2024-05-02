@@ -8,7 +8,7 @@ function TitleModal({ open, setOpenTitleModalId, title, setPostTitle, handleSave
 
     const handleChange = (event) => {
         const inputValue = event.target.value.trim();
-        setIsValid(!!inputValue) ; // Validate if input value is not empty
+        setIsValid(!!inputValue) ; 
         setPostTitle(inputValue);
         
     };

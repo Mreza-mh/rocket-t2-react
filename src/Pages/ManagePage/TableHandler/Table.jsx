@@ -6,7 +6,7 @@ import {
 } from "../../../components/ADEhandler/HandleADE.jsx";
 import useData from "../../../Hooks/Usedata.jsx";
 import TitleModal from "../../../packages/TitleModal.jsx";
-import CustomCard from "../../../components/Form/CustomCard.jsx";
+import CustomCard from "../../../components/CardForm/CustomCard.jsx";
 import TableAppearance from "./TableAppearance.jsx";
 
 function ManagePageAppearance() {

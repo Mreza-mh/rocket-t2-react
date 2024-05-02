@@ -3,7 +3,6 @@ import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
 function Particle() {
   const particlesInit = useCallback(async (engine) => {
-    // console.log(engine);
 
     await loadSlim(engine);
   }, []);
@@ -23,7 +22,7 @@ function Particle() {
           color: {
             value: "#2e4147",
           },
-          image: "url('src/assets/wp265676.jpg')",
+          image: "url('src/assets/bgimage.jpg')",
           position: "",
           repeat: "",
           size: "",

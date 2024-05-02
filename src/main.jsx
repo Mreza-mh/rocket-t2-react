@@ -5,7 +5,7 @@ import "./index.css";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { store } from "./Rishe/Store";
+import { store } from "./context_store/Store";
 import Particle from "./packages/Particle.jsx";
 import { Provider } from "react-redux";
 
