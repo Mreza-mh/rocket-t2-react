@@ -6,7 +6,7 @@ import { notifyError } from "../../packages/Notify";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
-  password: Yup.string().required("Password is required"),
+  password: Yup.number(5).required("Password is required"),
 });
 
 function storeToken(name, token) {

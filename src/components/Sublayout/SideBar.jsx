@@ -64,9 +64,10 @@ useEffect(() => {
                 clipRule="evenodd"
               />
             </svg>
-            <h1 className=" ml-4 border-b-2 border-[#a02a499b] text-center text-white text-md text-bold ">
+            <h1 className="ml-4 font-bold font-mono text-2xl text-white"> Hi </h1>
+            <h2 className=" ml-2 border-b-2 border-[#a02a499b] text-center text-white text-md text-bold ">
               {username}
-            </h1>
+            </h2>
           </div>
         </nav>
       )}
