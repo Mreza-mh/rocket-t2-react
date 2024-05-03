@@ -6,6 +6,7 @@ import { notifyError} from '../packages/Notify';
 
 
 class DeleteAlert extends React.Component {
+  
   static confirmDelete = async (iid, refetchData) => {
     const result = await Swal.fire({
       title: 'Are you sure?',
@@ -16,6 +17,7 @@ class DeleteAlert extends React.Component {
       cancelButtonText: 'No, cancel!',
       reverseButtons: true
     });
+
 
     if (result.isConfirmed) {
       try {

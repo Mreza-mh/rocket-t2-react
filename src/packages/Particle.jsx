@@ -3,12 +3,10 @@ import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
 function Particle() {
   const particlesInit = useCallback(async (engine) => {
-
     await loadSlim(engine);
   }, []);
 
   const particlesLoaded = useCallback(async (container) => {
-    await console.log(container);
   }, []);
 
   return (
@@ -19,32 +17,22 @@ function Particle() {
       options={{
         autoPlay: true,
         background: {
-          color: {
-            value: "#2e4147",
-          },
-          image: "url('src/assets/bgimage.jpg')",
+          color: { value: "#030c11" },
+          image: "",
           position: "",
           repeat: "",
           size: "",
-          opacity: 0.1,
+          opacity: 1,
         },
         backgroundMask: {
           composite: "source-out",
-          cover: {
-            color: {
-              value: "#fff",
-            },
-            opacity: 0,
-          },
+          cover: { color: { value: "#353435f5" }, opacity: 0 },
           enable: false,
         },
         clear: true,
         defaultThemes: {},
         delay: 0,
-        fullScreen: {
-          enable: true,
-          zIndex: -1,
-        },
+        fullScreen: { enable: true, zIndex: -1 },
         detectRetina: true,
         duration: 0,
         fpsLimit: 130,
@@ -82,12 +70,8 @@ function Particle() {
               quantity: 5,
               particles: {
                 color: {
-                  value: "#ff0000",
-                  animation: {
-                    enable: true,
-                    speed: 400,
-                    sync: true,
-                  },
+                  value: "#353435f5",
+                  animation: { enable: true, speed: 400, sync: true },
                 },
                 collisions: {
                   enable: false,
@@ -280,17 +264,17 @@ function Particle() {
               area: {
                 gradient: {
                   start: {
-                    value: "#ffffff",
+                    value: "#353435f5",
                   },
                   stop: {
-                    value: "#000000",
+                    value: "#353435f5",
                   },
                 },
                 radius: 1000,
               },
               shadow: {
                 color: {
-                  value: "#000000",
+                  value: "#353435f5",
                 },
                 length: 2000,
               },
@@ -328,7 +312,7 @@ function Particle() {
             },
           },
           color: {
-            value: "#0000004b",
+            value: "#353435f5",
             animation: {
               h: {
                 count: 0,
@@ -460,7 +444,7 @@ function Particle() {
           shadow: {
             blur: 0,
             color: {
-              value: "#000",
+              value: "#353435f5", ////
             },
             enable: false,
             offset: {
@@ -645,7 +629,7 @@ function Particle() {
             shadow: {
               blur: 5,
               color: {
-                value: "#000",
+                value: "#353435f5f",
               },
               enable: false,
             },

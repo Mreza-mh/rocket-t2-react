@@ -42,14 +42,18 @@ function SideBar() {
   return (
     <>
       {sidebarOpen && (
-        // uppernav 
+        // uppernav
         <nav className=" bg-gradient-to-r h-20 from-[#a02a499b] via-[#a02a4938] to-[#1a304446] p-2 flex items-center w-full justify-between  z-50 ">
           <div className="flex ">
             {svg.topsvg}
-            <h1 className="ml-4 font-bold font-mono text-2xl text-white">Hi</h1>
-            <h2 className=" ml-2 border-b-2 border-[#a02a499b] text-center text-white text-md text-bold ">
-              {username}
-            </h2>
+            <div className="bg- flex">
+              <h1 className="ml-4 font-bold font-mono text-2xl text-white">
+                Hi
+              </h1>
+              <h2 className=" ml-2 mt-1 border-[#a02a499b] text-center text-white text-md text-bold ">
+                {username}
+              </h2>
+            </div>
           </div>
         </nav>
       )}
@@ -61,9 +65,7 @@ function SideBar() {
               className="text-white text-xl ml-6 mt-2 font-semibold text-center"
               onClick={() => dispatch(toggleSidebar())}
             >
-              
-              {!sidebar ? (<>{svg.showdown}</>) : (<>{svg.showup}</>)}
-              
+              {!sidebar ? <>{svg.showdown}</> : <>{svg.showup}</>}
             </button>
           </div>
           <div className="flex items-center space-x-4">

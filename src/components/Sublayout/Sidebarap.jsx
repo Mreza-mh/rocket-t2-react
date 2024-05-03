@@ -28,7 +28,7 @@ function Sidebarap({ setSidebarOpen, handleLogout }) {
             <span className="absolute left-0 ml-3 h-2 w-2 animate-ping rounded-full bg-sky-500"></span>
           )}
           {svg.Analytics}
-          <small className="text-xs font-medium"> Analytics </small>
+          <small className="text-xs font-medium"> Dashboard </small>
         </Link>
 
         <Link
@@ -51,7 +51,7 @@ function Sidebarap({ setSidebarOpen, handleLogout }) {
           onClick={click}
           className="flex aspect-square min-h-[32px] w-16 flex-col items-center justify-center gap-1 rounded-md p-1.5 text-gray-400 hover:bg-red-300 hover:text-gray-900 dark:hover:bg-slate-700"
         >
-        {svg.logout}
+          {svg.logout}
 
           <small className="text-center text-xs font-medium">Log out</small>
         </button>

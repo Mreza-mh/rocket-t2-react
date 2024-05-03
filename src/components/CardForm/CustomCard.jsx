@@ -3,9 +3,9 @@ import React from "react";
 function CustomCard({ image, p1, inerp, click }) {
   return (
     <div className="flex justify-center">
-      <div className="w-full max-w-sm rounded-lg overflow-hidden shadow-lg bg-white hover:shadow-xl transition duration-300">
+      <div className="w-full max-w-sm rounded-xl overflow-hidden shadow-inner bg-white hover:shadow-inner transition duration-300 p-1 shadow-black">
         <img
-          className="w-full h-64 object-cover rounded-t-lg"
+          className="w-full h-64 object-cover rounded-lg"
           src={image}
           alt="Post"
         />
